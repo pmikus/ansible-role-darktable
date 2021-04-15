@@ -4,17 +4,26 @@
 - name: Ensure dependencies are installed.
   apt:
     name:
-      - apt-transport-https
-      - ca-certificates
-      - python3-apt
-    state: present
+      - "apt-transport-https"
+      - "ca-certificates"
+      - "python3-apt"
+    state: "present"
+    cache_valid_time: 3600
+    install_recommends: False
   tags:
     - darktable-inst-dependencies
+
+- name: Conf - Add APT Key
+  apt_key:
+    url: "{{ darktable_apt_key_url }}"
+    state: "{{ darktable_apt_key_state }}"
+  tags:
+    - darktable-conf-apt
 
 - name: Add darktable repository.
   apt_repository:
     repo: "{{ darktable_apt_url }}"
     state: "{{ darktable_apt_state }}"
-    update_cache: true
+    update_cache: True
   tags:
-    - darktable-inst-dependencies
+    - darktable-conf-apt

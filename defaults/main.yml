@@ -5,7 +5,9 @@ darktable_package: "darktable"
 darktable_package_state: "present"
 
 # Used only for Debian/Ubuntu.
+opensuse_url: "http://download.opensuse.org/repositories/graphics"
 darktable_apt_key: "3247B7519EDBEAB422E900A3040524A84C70D8B5"
-darktable_apt_key_url: "http://download.opensuse.org/repositories/graphics:{{darktable_package}}/xUbuntu_18.04/Release.key"
-darktable_apt_url: "deb http://download.opensuse.org/repositories/graphics:/{{darktable_package}}/xUbuntu_18.04 /"
+darktable_apt_key_url: "{{ opensuse_url }}:{{ darktable_package }}/x{{ ansible_distribution }}_{{ ansible_distribution_version }}/Release.key"
+darktable_apt_key_state: "present"
+darktable_apt_url: "deb {{ opensuse_url }}:{{ darktable_package }}/x{{ ansible_distribution }}_{{ ansible_distribution_version }} /"
 darktable_apt_state: "present"
