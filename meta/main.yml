@@ -1,0 +1,23 @@
+---
+# file: meta/main.yaml
+
+dependencies: []
+
+galaxy_info:
+  role_name: darktable
+  author: pmikus
+  description: Darktable for Linux.
+  company: none
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+        - focal
+        - groovy
+        - hirsute
+  galaxy_tags:
+    - darktable
+    - photo
+    - raw

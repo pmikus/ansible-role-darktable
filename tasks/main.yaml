@@ -1,0 +1,13 @@
+---
+# file: tasks/main.yaml
+
+- include_tasks: "{{ ansible_distribution|lower }}.yaml"
+  tags:
+    - darktable-inst-dependencies
+
+- name: Install darktable.
+  package:
+    name: "{{ darktable_package }}"
+    state: "{{ darktable_package_state }}"
+  tags:
+    - darktable-inst

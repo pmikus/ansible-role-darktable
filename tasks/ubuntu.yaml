@@ -1,0 +1,20 @@
+---
+# file: tasks/ubuntu.yaml
+
+- name: Ensure dependencies are installed.
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - python3-apt
+    state: present
+  tags:
+    - darktable-inst-dependencies
+
+- name: Add darktable repository.
+  apt_repository:
+    repo: "{{ darktable_apt_url }}"
+    state: "{{ darktable_apt_state }}"
+    update_cache: true
+  tags:
+    - darktable-inst-dependencies
