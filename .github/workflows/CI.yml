@@ -76,3 +76,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  galaxy:
+    # Ensure test job passes before pushing image.
+    needs: molecule
+
+    name: GalaxyAnsible
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ansible Galaxy Role Importer
+        uses: hspaans/ansible-galaxy-action@v0.2.8
+        with:
+          api_key: ${{ secrets.GALAXY_TOKEN }}
